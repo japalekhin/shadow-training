@@ -1,7 +1,7 @@
-import 'package:basic_structure/shadow-training.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shadow_training/shadow-training.dart';
 
 void main() async {
   await Flame.util.fullScreen();

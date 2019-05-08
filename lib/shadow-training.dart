@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:basic_structure/components/background.dart';
 import 'package:flame/game.dart';
+import 'package:shadow_training/components/background.dart';
 
 class SpeedTraining extends Game {
   Background background;

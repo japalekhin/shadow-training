@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:basic_structure/shadow-training.dart';
 import 'package:flame/sprite.dart';
+import 'package:shadow_training/shadow-training.dart';
 
 class Background {
   final SpeedTraining game;
