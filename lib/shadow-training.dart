@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flame/game.dart';
+import 'package:flutter/gestures.dart';
 import 'package:shadow_training/components/background.dart';
 import 'package:shadow_training/components/boxer.dart';
 
@@ -38,4 +39,6 @@ class ShadowTraining extends Game {
     screenScale = screen.width / 9;
     screenHeight = screen.height / screenScale;
   }
+
+  void onTapDown(TapDownDetails d) {}
 }
