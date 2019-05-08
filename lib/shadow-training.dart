@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/painting.dart';
 import 'package:shadow_training/components/background.dart';
 import 'package:shadow_training/components/boxer.dart';
+import 'package:shadow_training/components/perfect-time.dart';
 import 'package:shadow_training/components/punch-marker.dart';
 import 'package:shadow_training/shadow-training-ui.dart';
 
@@ -35,6 +36,7 @@ class ShadowTraining extends Game {
   Background background;
   Boxer boxer;
   List<PunchMarker> markers;
+  PerfectTime perfectTime;
 
   ShadowTraining(this.ui) {
     fpsS = TextStyle(
@@ -47,12 +49,15 @@ class ShadowTraining extends Game {
     );
 
     rnd = Random();
+
+    // components
     background = Background(this);
     boxer = Boxer(this);
     markers = List<PunchMarker>();
   }
 
   void start() {
+    perfectTime ??= PerfectTime(this);
     gameSpeed = initialSpeed;
     nextSpawn = maxNextSpawn;
     runningSpawn = nextSpawn;
@@ -76,7 +81,10 @@ class ShadowTraining extends Game {
 
     background.render(c);
     boxer.render(c);
-    markers.forEach((PunchMarker m) => m.render(c));
+    if (ui.isTraining) {
+      markers.forEach((PunchMarker m) => m.render(c));
+      perfectTime.render(c);
+    }
 
     c.restore();
 
