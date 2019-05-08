@@ -17,6 +17,10 @@ class PunchMarker {
     if (type == PunchMarkerType.up) sprite = Sprite('markers/up.png');
   }
 
+  void hit(double percentage) {
+    isHit = true;
+  }
+
   void render(Canvas c) {
     sprite.renderRect(c, rect);
   }
