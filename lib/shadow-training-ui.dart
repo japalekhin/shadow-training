@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shadow_training/shadow-training.dart';
 
 class ShadowTrainingUI extends StatefulWidget {
   final ShadowTrainingUIState state = ShadowTrainingUIState();
@@ -7,6 +8,8 @@ class ShadowTrainingUI extends StatefulWidget {
 }
 
 class ShadowTrainingUIState extends State<ShadowTrainingUI> {
+  ShadowTraining game;
+  bool isTraining = false;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
   double highScore = 0;
@@ -82,17 +85,76 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     );
   }
 
+  Widget bottomNotTraining() {
+    return Row(
+      children: <Widget>[
+        IconButton(
+          color: isBGMEnabled ? Colors.white : Colors.grey,
+          icon: Icon(
+            isBGMEnabled ? Icons.music_note : Icons.music_video,
+          ),
+          onPressed: () {},
+        ),
+        spacer(),
+        RaisedButton(
+          child: Text(
+            'Start Training!',
+            style: TextStyle(fontSize: 30),
+          ),
+          padding: EdgeInsets.all(20),
+          onPressed: () {
+            isTraining = true;
+            update();
+          },
+        ),
+        spacer(),
+        IconButton(
+          color: isBGMEnabled ? Colors.white : Colors.grey,
+          icon: Icon(
+            isBGMEnabled ? Icons.music_note : Icons.music_video,
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget bottomTraining() {
+    return Row(
+      children: <Widget>[
+        spacer(),
+        IconButton(
+          color: isBGMEnabled ? Colors.white : Colors.grey,
+          icon: Icon(
+            isBGMEnabled ? Icons.music_note : Icons.music_video,
+          ),
+          onPressed: () {},
+        ),
+        spacer(),
+        IconButton(
+          color: isBGMEnabled ? Colors.white : Colors.grey,
+          icon: Icon(
+            isBGMEnabled ? Icons.music_note : Icons.music_video,
+          ),
+          onPressed: () {},
+        ),
+        spacer(),
+        IconButton(
+          color: isBGMEnabled ? Colors.white : Colors.grey,
+          icon: Icon(
+            isBGMEnabled ? Icons.music_note : Icons.music_video,
+          ),
+          onPressed: () {},
+        ),
+        spacer(),
+      ],
+    );
+  }
+
   Widget bottomControls() {
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
-      child: RaisedButton(
-        child: Text(
-          'Start Training!',
-          style: TextStyle(fontSize: 30),
-        ),
-        padding: EdgeInsets.all(20),
-        onPressed: () {},
-      ),
+      child: isTraining ? bottomTraining() : bottomNotTraining(),
     );
   }
 
