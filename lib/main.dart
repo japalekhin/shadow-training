@@ -16,6 +16,7 @@ void main() async {
     'boxer/punch-right.png',
     'boxer/punch-up.png',
     'markers/left.png',
+    'markers/perfect-time.png',
     'markers/right.png',
     'markers/up.png',
   ]);
