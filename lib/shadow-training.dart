@@ -89,6 +89,22 @@ class ShadowTraining extends Game {
     }
   }
 
+  void calculatePunch(PunchMarkerType type) {
+    if (!ui.isTraining) return;
+    bool hasHit = false;
+    markers.forEach((PunchMarker m) {
+      if (perfectTime.rect.overlaps(m.rect) && m.type == type) {
+        m.isHit = true;
+        hasHit = true;
+      }
+    });
+    if (hasHit) {
+      addFatigue(fatigueValue * -.3);
+    } else {
+      addFatigue(fatigueValue * .125);
+    }
+  }
+
   void render(Canvas c) {
     if (screen == null) return;
     c.save();

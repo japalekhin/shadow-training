@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
+import 'package:shadow_training/components/punch-marker.dart';
 import 'package:shadow_training/shadow-training.dart';
 
 class Boxer {
@@ -81,14 +82,17 @@ class Boxer {
 
   void punchLeft() {
     setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
+    game.calculatePunch(PunchMarkerType.left);
   }
 
   void punchRight() {
     setStatus(BoxerStatus.punchRight, howLong: punchDuration);
+    game.calculatePunch(PunchMarkerType.right);
   }
 
   void upperCut() {
     setStatus(BoxerStatus.punchUp, howLong: punchDuration);
+    game.calculatePunch(PunchMarkerType.up);
   }
 
   void render(Canvas c) {
