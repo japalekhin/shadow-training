@@ -118,9 +118,9 @@ class ShadowTraining extends Game {
     background.render(c);
     boxer.render(c);
     if (ui.isTraining) {
+      fatigueBar.render(c);
       markers.forEach((PunchMarker m) => m.render(c));
       perfectTime.render(c);
-      fatigueBar.render(c);
     }
 
     c.restore();
