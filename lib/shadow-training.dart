@@ -1,15 +1,20 @@
 import 'dart:ui';
 import 'package:flame/game.dart';
 import 'package:shadow_training/components/background.dart';
+import 'package:shadow_training/components/boxer.dart';
 
-class SpeedTraining extends Game {
-  Background background;
+class ShadowTraining extends Game {
   Size screen;
   double screenScale;
   double screenHeight;
 
-  SpeedTraining() {
+  // components
+  Background background;
+  Boxer boxer;
+
+  ShadowTraining() {
     background = Background(this);
+    boxer = Boxer(this);
   }
 
   void render(Canvas c) {
@@ -19,11 +24,14 @@ class SpeedTraining extends Game {
     c.translate(0, screenHeight);
 
     background.render(c);
+    boxer.render(c);
 
     c.restore();
   }
 
-  void update(double t) {}
+  void update(double t) {
+    boxer.update(t);
+  }
 
   void resize(Size s) {
     screen = s;

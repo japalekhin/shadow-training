@@ -16,6 +16,6 @@ void main() async {
     'boxer/punch-up.png',
   ]);
 
-  SpeedTraining game = SpeedTraining();
+  ShadowTraining game = ShadowTraining();
   runApp(game.widget);
 }
