@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:basic_structure/speed-training.dart';
+import 'package:basic_structure/shadow-training.dart';
 import 'package:flame/sprite.dart';
 
 class Background {

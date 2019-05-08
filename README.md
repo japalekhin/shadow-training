@@ -1,4 +1,4 @@
-# basic_structure
+# Shadow Training
 
 A new Flutter project.
 

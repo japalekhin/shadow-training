@@ -1,4 +1,4 @@
-package com.example.basic_structure;
+package games.alekhin.shadow_training;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
