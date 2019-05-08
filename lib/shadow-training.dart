@@ -46,6 +46,6 @@ class ShadowTraining extends Game {
   }
 
   void onTapDown(TapDownDetails d) {
-    boxer.punch();
+    boxer.randomPunch();
   }
 }

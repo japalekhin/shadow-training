@@ -71,7 +71,7 @@ class Boxer {
     backToIdle = max(0, howLong);
   }
 
-  void punch() {
+  void randomPunch() {
     int punch = game.rnd.nextInt(3);
     final double punchDuration = .08;
     if (punch == 0) setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
