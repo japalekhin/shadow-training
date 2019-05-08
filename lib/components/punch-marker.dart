@@ -4,12 +4,13 @@ import 'package:shadow_training/shadow-training.dart';
 
 class PunchMarker {
   final ShadowTraining game;
+  final PunchMarkerType type;
   bool isExpired = false;
   bool isHit = false;
   Rect rect;
   Sprite sprite;
 
-  PunchMarker(this.game, PunchMarkerType type) {
+  PunchMarker(this.game, this.type) {
     rect = Rect.fromLTWH(10, -(game.screenHeight - 1.8), 1, 1);
     if (type == PunchMarkerType.left) sprite = Sprite('markers/left.png');
     if (type == PunchMarkerType.right) sprite = Sprite('markers/right.png');
