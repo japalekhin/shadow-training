@@ -4,8 +4,10 @@ import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shadow_training/components/background.dart';
 import 'package:shadow_training/components/boxer.dart';
+import 'package:shadow_training/shadow-training-ui.dart';
 
 class ShadowTraining extends Game {
+  final ShadowTrainingUIState ui;
   Random rnd;
   Size screen;
   double screenScale;
@@ -15,7 +17,7 @@ class ShadowTraining extends Game {
   Background background;
   Boxer boxer;
 
-  ShadowTraining() {
+  ShadowTraining(this.ui) {
     rnd = Random();
     background = Background(this);
     boxer = Boxer(this);
