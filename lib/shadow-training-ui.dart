@@ -122,6 +122,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
           padding: EdgeInsets.all(20),
           onPressed: () {
             isTraining = true;
+            game.start();
             update();
           },
         ),
