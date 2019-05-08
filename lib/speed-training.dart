@@ -5,6 +5,7 @@ import 'package:flame/game.dart';
 class SpeedTraining extends Game {
   Background background;
   Size screen;
+  double screenScale;
   double screenHeight;
 
   SpeedTraining() {
@@ -14,7 +15,7 @@ class SpeedTraining extends Game {
   void render(Canvas c) {
     if (screen == null) return;
     c.save();
-    c.scale(screen.width / 9);
+    c.scale(screenScale);
     c.translate(0, screenHeight);
 
     background.render(c);
@@ -26,6 +27,7 @@ class SpeedTraining extends Game {
 
   void resize(Size s) {
     screen = s;
-    screenHeight = screen.height / (screen.width / 9);
+    screenScale = screen.width / 9;
+    screenHeight = screen.height / screenScale;
   }
 }
