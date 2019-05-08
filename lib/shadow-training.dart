@@ -81,6 +81,7 @@ class ShadowTraining extends Game {
   }
 
   void addFatigue(double fat) {
+    if (!ui.isTraining) return;
     fatigueValue = max(0, fatigueValue + fat);
     if (fatigueValue >= 1) {
       ui.hasLost = true;
