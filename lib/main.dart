@@ -7,6 +7,10 @@ void main() async {
   await Flame.util.fullScreen();
   await Flame.util.setOrientation(DeviceOrientation.portraitUp);
 
+  await Flame.images.loadAll(<String>[
+    'background.png',
+  ]);
+
   SpeedTraining game = SpeedTraining();
   runApp(game.widget);
 }
