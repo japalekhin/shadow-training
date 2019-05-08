@@ -6,6 +6,7 @@ import 'package:shadow_training/shadow-training.dart';
 
 class Boxer {
   final ShadowTraining game;
+  final double punchDuration = .08;
   bool initialized;
   BoxerStatus status;
   double backToIdle;
@@ -73,10 +74,21 @@ class Boxer {
 
   void randomPunch() {
     int punch = game.rnd.nextInt(3);
-    final double punchDuration = .08;
-    if (punch == 0) setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
-    if (punch == 1) setStatus(BoxerStatus.punchRight, howLong: punchDuration);
-    if (punch == 2) setStatus(BoxerStatus.punchUp, howLong: punchDuration);
+    if (punch == 0) punchLeft();
+    if (punch == 1) punchRight();
+    if (punch == 2) upperCut();
+  }
+
+  void punchLeft() {
+    setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
+  }
+
+  void punchRight() {
+    setStatus(BoxerStatus.punchRight, howLong: punchDuration);
+  }
+
+  void upperCut() {
+    setStatus(BoxerStatus.punchUp, howLong: punchDuration);
   }
 
   void render(Canvas c) {
