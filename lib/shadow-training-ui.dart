@@ -9,7 +9,11 @@ class ShadowTrainingUI extends StatefulWidget {
 class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
-  double highScore = 500;
+  double highScore = 0;
+
+  void update() {
+    setState(() {});
+  }
 
   Widget spacer() {
     return Expanded(
@@ -33,9 +37,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
                 isBGMEnabled ? Icons.music_note : Icons.music_video,
               ),
               onPressed: () {
-                highScore += 100;
                 isBGMEnabled = !isBGMEnabled;
-                setState(() {});
+                update();
               },
             ),
           ),
@@ -49,9 +52,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
                 isSFXEnabled ? Icons.volume_up : Icons.volume_off,
               ),
               onPressed: () {
-                highScore -= 50;
                 isSFXEnabled = !isSFXEnabled;
-                setState(() {});
+                update();
               },
             ),
           ),
