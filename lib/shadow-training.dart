@@ -16,6 +16,7 @@ class ShadowTraining extends Game {
   Boxer boxer;
 
   ShadowTraining() {
+    rnd = Random();
     background = Background(this);
     boxer = Boxer(this);
   }
@@ -42,5 +43,7 @@ class ShadowTraining extends Game {
     screenHeight = screen.height / screenScale;
   }
 
-  void onTapDown(TapDownDetails d) {}
+  void onTapDown(TapDownDetails d) {
+    boxer.punch();
+  }
 }
