@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/painting.dart';
 import 'package:shadow_training/components/background.dart';
 import 'package:shadow_training/components/boxer.dart';
+import 'package:shadow_training/components/fatigue.dart';
 import 'package:shadow_training/components/perfect-time.dart';
 import 'package:shadow_training/components/punch-marker.dart';
 import 'package:shadow_training/shadow-training-ui.dart';
@@ -31,12 +32,14 @@ class ShadowTraining extends Game {
   double gameSpeed = 0;
   double nextSpawn = 0;
   double runningSpawn = 0;
+  double fatigueValue = 0;
 
   // components
   Background background;
   Boxer boxer;
   List<PunchMarker> markers;
   PerfectTime perfectTime;
+  Fatigue fatigueBar;
 
   ShadowTraining(this.ui) {
     fpsS = TextStyle(
@@ -54,6 +57,7 @@ class ShadowTraining extends Game {
     background = Background(this);
     boxer = Boxer(this);
     markers = List<PunchMarker>();
+    fatigueBar = Fatigue(this);
   }
 
   void start() {
@@ -61,6 +65,7 @@ class ShadowTraining extends Game {
     gameSpeed = initialSpeed;
     nextSpawn = maxNextSpawn;
     runningSpawn = nextSpawn;
+    fatigueValue = 0;
     markers.clear();
   }
 
@@ -71,6 +76,15 @@ class ShadowTraining extends Game {
     if (r == 1) type = PunchMarkerType.right;
     if (r == 2) type = PunchMarkerType.up;
     markers.add(PunchMarker(this, type));
+  }
+
+  void addFatigue(double fat) {
+    fatigueValue = max(0, fatigueValue + fat);
+    if (fatigueValue >= 1) {
+      ui.hasLost = true;
+      ui.isTraining = false;
+      ui.update();
+    }
   }
 
   void render(Canvas c) {
@@ -84,6 +98,7 @@ class ShadowTraining extends Game {
     if (ui.isTraining) {
       markers.forEach((PunchMarker m) => m.render(c));
       perfectTime.render(c);
+      fatigueBar.render(c);
     }
 
     c.restore();
@@ -109,6 +124,8 @@ class ShadowTraining extends Game {
           gameSpeed = maxSpeed;
         }
       }
+      addFatigue(.01 * t);
+      fatigueBar.update(t);
     }
 
     fps = 1 / t;

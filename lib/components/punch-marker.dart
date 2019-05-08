@@ -22,7 +22,12 @@ class PunchMarker {
 
   void update(double t) {
     rect = rect.translate(game.gameSpeed * -t, 0);
-    if (rect.left < -2) isExpired = true;
+    if (rect.left < -2) {
+      if (!isHit) {
+        game.addFatigue(.25);
+      }
+      isExpired = true;
+    }
   }
 }
 

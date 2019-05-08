@@ -10,6 +10,7 @@ class ShadowTrainingUI extends StatefulWidget {
 class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   ShadowTraining game;
   bool isTraining = false;
+  bool hasLost = false;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
   double highScore = 0;
