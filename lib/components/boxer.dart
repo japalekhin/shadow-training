@@ -24,7 +24,7 @@ class Boxer {
     initialized = false;
     status = BoxerStatus.idle;
     backToIdle = 0;
-    rect = Rect.fromLTWH(2, -6, 4, 4);
+    rect = Rect.fromLTWH(2, -8, 4, 4);
     idleIndex = 0;
     dizzyIndex = 0;
     idleSprite = List<Sprite>();
