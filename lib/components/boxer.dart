@@ -86,6 +86,20 @@ class Boxer {
 
   void update(double t) {
     if (!initialized) return;
+
+    if (status == BoxerStatus.idle) {
+      idleIndex += idleSprite.length * t * 1.5;
+      while (idleIndex > idleSprite.length) {
+        idleIndex -= idleSprite.length;
+      }
+    }
+
+    if (status == BoxerStatus.dizzy) {
+      dizzyIndex += dizzySprite.length * t * 1.25;
+      while (dizzyIndex > dizzySprite.length) {
+        dizzyIndex -= dizzySprite.length;
+      }
+    }
   }
 }
 
