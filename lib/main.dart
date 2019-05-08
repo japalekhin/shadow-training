@@ -19,6 +19,7 @@ void main() async {
 
   ShadowTrainingUI gameUI = ShadowTrainingUI();
   ShadowTraining game = ShadowTraining(gameUI.state);
+  gameUI.state.game = game;
 
   runApp(
     MaterialApp(
