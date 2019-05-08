@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
@@ -7,6 +8,7 @@ class Boxer {
   final ShadowTraining game;
   bool initialized;
   BoxerStatus status;
+  double backToIdle;
   Rect rect;
   double idleIndex;
   double dizzyIndex;
@@ -19,6 +21,7 @@ class Boxer {
   Boxer(this.game) {
     initialized = false;
     status = BoxerStatus.idle;
+    backToIdle = 0;
     rect = Rect.fromLTWH(2, -6, 4, 4);
     idleIndex = 0;
     dizzyIndex = 0;
@@ -62,6 +65,12 @@ class Boxer {
     initialized = true;
   }
 
+  void setStatus(BoxerStatus toWhat, {double howLong}) {
+    howLong ??= 0;
+    status = toWhat;
+    backToIdle = max(0, howLong);
+  }
+
   void render(Canvas c) {
     if (!initialized) return;
 
@@ -98,6 +107,13 @@ class Boxer {
       dizzyIndex += dizzySprite.length * t * 1.25;
       while (dizzyIndex > dizzySprite.length) {
         dizzyIndex -= dizzySprite.length;
+      }
+    }
+
+    if (status != BoxerStatus.idle) {
+      backToIdle = max(0, backToIdle - t);
+      if (backToIdle == 0) {
+        status = BoxerStatus.idle;
       }
     }
   }
