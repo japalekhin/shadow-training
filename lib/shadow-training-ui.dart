@@ -22,43 +22,61 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     );
   }
 
+  Widget bgmControlButton() {
+    return Ink(
+      decoration: ShapeDecoration(
+        shape: CircleBorder(),
+      ),
+      child: IconButton(
+        color: isBGMEnabled ? Colors.white : Colors.grey,
+        icon: Icon(
+          isBGMEnabled ? Icons.music_note : Icons.music_video,
+        ),
+        onPressed: () {
+          isBGMEnabled = !isBGMEnabled;
+          update();
+        },
+      ),
+    );
+  }
+
+  Widget sfxControlButton() {
+    return Ink(
+      decoration: ShapeDecoration(
+        shape: CircleBorder(),
+      ),
+      child: IconButton(
+        color: isSFXEnabled ? Colors.white : Colors.grey,
+        icon: Icon(
+          isSFXEnabled ? Icons.volume_up : Icons.volume_off,
+        ),
+        onPressed: () {
+          isSFXEnabled = !isSFXEnabled;
+          update();
+        },
+      ),
+    );
+  }
+
+  Widget highScoreDisplay() {
+    return Text(
+      'High-score: ' + highScore.toStringAsFixed(0),
+      style: TextStyle(
+        fontSize: 24,
+        color: Colors.white,
+      ),
+    );
+  }
+
   Widget topControls() {
     return Padding(
       padding: EdgeInsets.only(top: 5, left: 15, right: 15),
       child: Row(
         children: <Widget>[
-          Ink(
-            decoration: ShapeDecoration(
-              shape: CircleBorder(),
-            ),
-            child: IconButton(
-              color: isBGMEnabled ? Colors.white : Colors.grey,
-              icon: Icon(
-                isBGMEnabled ? Icons.music_note : Icons.music_video,
-              ),
-              onPressed: () {
-                isBGMEnabled = !isBGMEnabled;
-                update();
-              },
-            ),
-          ),
-          Ink(
-            decoration: ShapeDecoration(
-              shape: CircleBorder(),
-            ),
-            child: IconButton(
-              color: isSFXEnabled ? Colors.white : Colors.grey,
-              icon: Icon(
-                isSFXEnabled ? Icons.volume_up : Icons.volume_off,
-              ),
-              onPressed: () {
-                isSFXEnabled = !isSFXEnabled;
-                update();
-              },
-            ),
-          ),
+          bgmControlButton(),
+          sfxControlButton(),
           spacer(),
-          Text('High-score: ' + highScore.toString()),
+          highScoreDisplay(),
         ],
       ),
     );
@@ -73,7 +91,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
           style: TextStyle(fontSize: 30),
         ),
         padding: EdgeInsets.all(20),
-        onPressed: () => print('train!'),
+        onPressed: () {},
       ),
     );
   }
