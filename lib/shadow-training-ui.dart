@@ -18,9 +18,9 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     setState(() {});
   }
 
-  Widget spacer() {
+  Widget spacer({int size}) {
     return Expanded(
-      flex: 1,
+      flex: size ?? 100,
       child: Center(),
     );
   }
@@ -85,13 +85,31 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     );
   }
 
+  Widget scoreDisplay() {
+    return Text(
+      '0',
+      style: TextStyle(
+        fontSize: 150,
+        color: Colors.green,
+        shadows: <Shadow>[
+          Shadow(
+            color: Color(0x88000000),
+            blurRadius: 10,
+            offset: Offset(2, 2),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget bottomNotTraining() {
     return Row(
       children: <Widget>[
         IconButton(
-          color: isBGMEnabled ? Colors.white : Colors.grey,
+          color: Colors.white,
+          iconSize: 48,
           icon: Icon(
-            isBGMEnabled ? Icons.music_note : Icons.music_video,
+            Icons.help_outline,
           ),
           onPressed: () {},
         ),
@@ -109,9 +127,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
         ),
         spacer(),
         IconButton(
-          color: isBGMEnabled ? Colors.white : Colors.grey,
+          color: Colors.white,
+          iconSize: 48,
           icon: Icon(
-            isBGMEnabled ? Icons.music_note : Icons.music_video,
+            Icons.nature_people,
           ),
           onPressed: () {},
         ),
@@ -120,31 +139,32 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   }
 
   Widget bottomTraining() {
+    double iconSize = 64;
     return Row(
       children: <Widget>[
         spacer(),
         IconButton(
-          color: isBGMEnabled ? Colors.white : Colors.grey,
-          icon: Icon(
-            isBGMEnabled ? Icons.music_note : Icons.music_video,
-          ),
-          onPressed: () {},
+          color: Colors.white,
+          icon: Icon(Icons.adjust),
+          iconSize: iconSize,
+          padding: EdgeInsets.zero,
+          onPressed: () => game.boxer.punchLeft(),
         ),
         spacer(),
         IconButton(
-          color: isBGMEnabled ? Colors.white : Colors.grey,
-          icon: Icon(
-            isBGMEnabled ? Icons.music_note : Icons.music_video,
-          ),
-          onPressed: () {},
+          color: Colors.white,
+          icon: Icon(Icons.adjust),
+          iconSize: iconSize,
+          padding: EdgeInsets.zero,
+          onPressed: () => game.boxer.upperCut(),
         ),
         spacer(),
         IconButton(
-          color: isBGMEnabled ? Colors.white : Colors.grey,
-          icon: Icon(
-            isBGMEnabled ? Icons.music_note : Icons.music_video,
-          ),
-          onPressed: () {},
+          color: Colors.white,
+          icon: Icon(Icons.adjust),
+          iconSize: iconSize,
+          padding: EdgeInsets.zero,
+          onPressed: () => game.boxer.punchRight(),
         ),
         spacer(),
       ],
@@ -159,12 +179,15 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   }
 
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        topControls(),
-        spacer(),
-        bottomControls(),
-      ],
-    );
+    List<Widget> controls = List<Widget>();
+    controls.add(topControls());
+    if (isTraining) {
+      controls.add(spacer(size: 60));
+      controls.add(scoreDisplay());
+    }
+    controls.add(spacer());
+    controls.add(bottomControls());
+
+    return Column(children: controls);
   }
 }
