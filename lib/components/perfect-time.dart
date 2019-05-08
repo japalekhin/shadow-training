@@ -9,7 +9,7 @@ class PerfectTime {
 
   PerfectTime(this.game) {
     rect = Rect.fromLTWH(2, -(game.screenHeight - 1.55), 4, 1.5);
-    sprite = Sprite('markers/perfect-time.png');
+    sprite = Sprite('perfect-time.png');
   }
 
   void render(Canvas c) {
