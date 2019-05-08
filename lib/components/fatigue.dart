@@ -4,26 +4,32 @@ import 'package:shadow_training/shadow-training.dart';
 
 class Fatigue {
   final ShadowTraining game;
-  Rect rect;
-  Paint paint;
+  Rect barRect;
+  Paint barPaint;
+  Rect holderRect;
+  Paint holderPaint;
 
   Fatigue(this.game) {
-    paint = Paint();
+    barPaint = Paint();
+    holderPaint = Paint();
+    holderPaint.color = Color(0x88ffffff);
   }
 
   void render(Canvas c) {
-    if (rect == null) return;
-    c.drawRect(rect, paint);
+    if (barRect == null) return;
+    c.drawRect(holderRect, holderPaint);
+    c.drawRect(barRect, barPaint);
   }
 
   void update(double t) {
-    rect = Rect.fromLTWH(
-      1,
+    holderRect ??= Rect.fromLTWH(0, -(game.screenHeight - 2.1875), 9, .25);
+    barRect = Rect.fromLTWH(
+      0,
       -(game.screenHeight - 2.1875),
-      7 * game.fatigueValue,
+      9 * game.fatigueValue,
       .25,
     );
-    paint.color = Color.fromRGBO(
+    barPaint.color = Color.fromRGBO(
       255,
       0,
       0,
