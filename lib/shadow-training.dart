@@ -94,17 +94,18 @@ class ShadowTraining extends Game {
     if (!ui.isTraining) return;
     bool hasHit = false;
     markers.forEach((PunchMarker m) {
-      if (perfectTime.rect.overlaps(m.rect) && m.type == type) {
-        m.isHit = true;
+      if (!m.isHit && perfectTime.rect.overlaps(m.rect) && m.type == type) {
+        Rect intersection = perfectTime.rect.intersect(m.rect);
+        double percentage = intersection.width * intersection.height;
+        addFatigue(fatigueValue * -.3 * percentage);
+        m.hit(percentage);
         hasHit = true;
         ui.score += 1;
         ui.update();
       }
     });
-    if (hasHit) {
-      addFatigue(fatigueValue * -.3);
-    } else {
-      addFatigue(fatigueValue * .125);
+    if (!hasHit) {
+      addFatigue(fatigueValue * .25);
     }
   }
 
