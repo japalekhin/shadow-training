@@ -71,6 +71,14 @@ class Boxer {
     backToIdle = max(0, howLong);
   }
 
+  void punch() {
+    int punch = game.rnd.nextInt(3);
+    final double punchDuration = .08;
+    if (punch == 0) setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
+    if (punch == 1) setStatus(BoxerStatus.punchRight, howLong: punchDuration);
+    if (punch == 2) setStatus(BoxerStatus.punchUp, howLong: punchDuration);
+  }
+
   void render(Canvas c) {
     if (!initialized) return;
 
