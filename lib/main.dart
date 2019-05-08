@@ -1,7 +1,7 @@
 import 'package:flame/flame.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:shadow_training/shadow-training-ui.dart';
 import 'package:shadow_training/shadow-training.dart';
 
 void main() async {
@@ -17,10 +17,31 @@ void main() async {
     'boxer/punch-up.png',
   ]);
 
-  ShadowTraining game = ShadowTraining();
-  runApp(game.widget);
+  ShadowTrainingUI gameUI = ShadowTrainingUI();
+  ShadowTraining game = ShadowTraining(gameUI.state);
 
-  TapGestureRecognizer tapper = TapGestureRecognizer();
-  tapper.onTapDown = game.onTapDown;
-  Flame.util.addGestureRecognizer(tapper);
+  runApp(
+    MaterialApp(
+      title: 'Shadow Training',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTapDown: game.onTapDown,
+                child: game.widget,
+              ),
+            ),
+            Center(
+              child: gameUI,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
