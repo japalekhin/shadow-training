@@ -66,6 +66,7 @@ class ShadowTraining extends Game {
     nextSpawn = maxNextSpawn;
     runningSpawn = nextSpawn;
     fatigueValue = 0;
+    boxer.setStatus(BoxerStatus.idle);
     markers.clear();
   }
 
@@ -84,6 +85,7 @@ class ShadowTraining extends Game {
       ui.hasLost = true;
       ui.isTraining = false;
       ui.update();
+      boxer.setStatus(BoxerStatus.dizzy, howLong: 2);
     }
   }
 
