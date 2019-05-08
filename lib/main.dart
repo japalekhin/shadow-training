@@ -15,10 +15,8 @@ void main() async {
     'boxer/punch-left.png',
     'boxer/punch-right.png',
     'boxer/punch-up.png',
-    'markers/left.png',
-    'markers/perfect-time.png',
-    'markers/right.png',
-    'markers/up.png',
+    'markers.png',
+    'perfect-time.png',
   ]);
 
   ShadowTrainingUI gameUI = ShadowTrainingUI();

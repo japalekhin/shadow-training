@@ -25,7 +25,5 @@ flutter:
     - assets/images/boxer/punch-left.png
     - assets/images/boxer/punch-right.png
     - assets/images/boxer/punch-up.png
-    - assets/images/markers/left.png
-    - assets/images/markers/perfect-time.png
-    - assets/images/markers/right.png
-    - assets/images/markers/up.png
+    - assets/images/markers.png
+    - assets/images/perfect-time.png

@@ -12,13 +12,17 @@ class PunchMarker {
 
   PunchMarker(this.game, this.type) {
     rect = Rect.fromLTWH(10, -(game.screenHeight - 1.8), 1, 1);
-    if (type == PunchMarkerType.left) sprite = Sprite('markers/left.png');
-    if (type == PunchMarkerType.right) sprite = Sprite('markers/right.png');
-    if (type == PunchMarkerType.up) sprite = Sprite('markers/up.png');
+    if (type == PunchMarkerType.left) sprite = Sprite('markers.png', height: 64, width: 64);
+    if (type == PunchMarkerType.right) sprite = Sprite('markers.png', height: 64, width: 64, x: 64);
+    if (type == PunchMarkerType.up) sprite = Sprite('markers.png', height: 64, width: 64, x: 128);
   }
 
   void hit(double percentage) {
     isHit = true;
+    double y = percentage < 1 ? 128 : 64;
+    if (type == PunchMarkerType.left) sprite = Sprite('markers.png', height: 64, width: 64, y: y);
+    if (type == PunchMarkerType.right) sprite = Sprite('markers.png', height: 64, width: 64, y: y, x: 64);
+    if (type == PunchMarkerType.up) sprite = Sprite('markers.png', height: 64, width: 64, y: y, x: 128);
   }
 
   void render(Canvas c) {
