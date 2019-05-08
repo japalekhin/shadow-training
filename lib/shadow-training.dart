@@ -16,9 +16,9 @@ class ShadowTraining extends Game {
   Size screen;
   double screenScale;
   double screenHeight;
-  double fps;
-  TextPainter fpsT;
-  TextStyle fpsS;
+  // double fps;
+  // TextPainter fpsT;
+  // TextStyle fpsS;
 
   // constants
   final double minNextSpawn = .3;
@@ -42,14 +42,14 @@ class ShadowTraining extends Game {
   Fatigue fatigueBar;
 
   ShadowTraining(this.ui) {
-    fpsS = TextStyle(
-      fontSize: 25,
-      color: Color(0xffff0000),
-    );
-    fpsT = TextPainter(
-      textAlign: TextAlign.left,
-      textDirection: TextDirection.ltr,
-    );
+    // fpsS = TextStyle(
+    //   fontSize: 25,
+    //   color: Color(0xffff0000),
+    // );
+    // fpsT = TextPainter(
+    //   textAlign: TextAlign.left,
+    //   textDirection: TextDirection.ltr,
+    // );
 
     rnd = Random();
 
@@ -67,6 +67,7 @@ class ShadowTraining extends Game {
     runningSpawn = nextSpawn;
     fatigueValue = 0;
     boxer.setStatus(BoxerStatus.idle);
+    ui.score = 0;
     markers.clear();
   }
 
@@ -96,6 +97,8 @@ class ShadowTraining extends Game {
       if (perfectTime.rect.overlaps(m.rect) && m.type == type) {
         m.isHit = true;
         hasHit = true;
+        ui.score += 1;
+        ui.update();
       }
     });
     if (hasHit) {
@@ -121,7 +124,7 @@ class ShadowTraining extends Game {
 
     c.restore();
 
-    fpsT.paint(c, Offset.zero);
+    // fpsT.paint(c, Offset.zero);
   }
 
   void update(double t) {
@@ -146,9 +149,9 @@ class ShadowTraining extends Game {
       fatigueBar.update(t);
     }
 
-    fps = 1 / t;
-    fpsT.text = TextSpan(text: fps.toString(), style: fpsS);
-    fpsT.layout();
+    // fps = 1 / t;
+    // fpsT.text = TextSpan(text: fps.toString(), style: fpsS);
+    // fpsT.layout();
   }
 
   void resize(Size s) {

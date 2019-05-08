@@ -13,7 +13,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   bool hasLost = false;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
-  double highScore = 0;
+  int score = 0;
+  int highScore = 0;
 
   void update() {
     setState(() {});
@@ -88,7 +89,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
 
   Widget scoreDisplay() {
     return Text(
-      '0',
+      score.toString(),
       style: TextStyle(
         fontSize: 150,
         color: Colors.green,
