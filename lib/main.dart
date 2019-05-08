@@ -9,6 +9,11 @@ void main() async {
 
   await Flame.images.loadAll(<String>[
     'background.png',
+    'boxer/dizzy.png',
+    'boxer/idle.png',
+    'boxer/punch-left.png',
+    'boxer/punch-right.png',
+    'boxer/punch-up.png',
   ]);
 
   SpeedTraining game = SpeedTraining();

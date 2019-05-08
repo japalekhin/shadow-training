@@ -20,3 +20,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/background.png
+    - assets/images/boxer/dizzy.png
+    - assets/images/boxer/idle.png
+    - assets/images/boxer/punch-left.png
+    - assets/images/boxer/punch-right.png
+    - assets/images/boxer/punch-up.png
