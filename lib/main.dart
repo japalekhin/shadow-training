@@ -1,7 +1,8 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:shadow_training/audio.dart';
+import 'package:shadow_training/bgm.dart';
+import 'package:shadow_training/sfx.dart';
 import 'package:shadow_training/shadow-training-ui.dart';
 import 'package:shadow_training/shadow-training.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +21,9 @@ void main() async {
     'markers.png',
     'perfect-time.png',
   ]);
-  Audio.preload();
+  await SFX.preload();
+  await BGM.preload();
+  BGM.play();
 
   SharedPreferences storage = await SharedPreferences.getInstance();
   ShadowTrainingUI gameUI = ShadowTrainingUI();
