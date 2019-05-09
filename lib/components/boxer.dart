@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
+import 'package:shadow_training/audio.dart';
 import 'package:shadow_training/components/punch-marker.dart';
 import 'package:shadow_training/shadow-training.dart';
 
@@ -75,6 +76,11 @@ class Boxer {
 
   void punch(BoxerStatus withWhat) {
     if (status == BoxerStatus.dizzy) return;
+    if (Audio.swish != null) {
+      Audio.sfxPool.play(
+        Audio.swish[game.rnd.nextInt(Audio.swish.length)],
+      );
+    }
     setStatus(withWhat, howLong: punchDuration);
   }
 
