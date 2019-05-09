@@ -223,6 +223,58 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
   }
 
   Widget buildScreenLost() {
+    List<Widget> children = List<Widget>();
+    children.add(
+      Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: Text(
+          'You got tired.',
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
+    );
+    children.add(
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Effective punches thrown:',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              score.toString(),
+              style: TextStyle(fontSize: 40),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (score >= highScore && score > 0) {
+      children.add(
+        Text(
+          'New High-Score!',
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 20,
+          ),
+        ),
+      );
+    }
+    children.add(
+      Padding(
+        padding: EdgeInsets.only(top: 15, bottom: 20),
+        child: RaisedButton(
+          child: Text('Train Again!'),
+          onPressed: () {
+            currentScreen = UIScreen.playing;
+            game.start();
+            update();
+          },
+        ),
+      ),
+    );
+
     return Positioned.fill(
       child: Column(
         children: <Widget>[
@@ -230,48 +282,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
             backgroundColor: Color(0xaaffffff),
             children: <Widget>[
               Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      'You got tired.',
-                      style: TextStyle(fontSize: 25),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Effective punches thrown:',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        Text(
-                          score.toString(),
-                          style: TextStyle(fontSize: 40),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    'New High-Score!',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 20),
-                    child: RaisedButton(
-                      child: Text('Train Again!'),
-                      onPressed: () {
-                        currentScreen = UIScreen.playing;
-                        game.start();
-                        update();
-                      },
-                    ),
-                  ),
-                ],
+                children: children,
               ),
             ],
           ),
