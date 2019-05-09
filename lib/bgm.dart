@@ -24,7 +24,7 @@ class BGM {
   }
 
   static Future<void> play() async {
-    await player.loop('bgm.ogg', volume: .5);
+    await player.loop('bgm.ogg', volume: .35);
     _update();
   }
 
