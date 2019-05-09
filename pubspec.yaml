@@ -20,6 +20,20 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/audio/bgm.ogg
+    - assets/audio/swish-1.ogg
+    - assets/audio/swish-2.ogg
+    - assets/audio/swish-3.ogg
+    - assets/audio/swish-4.ogg
+    - assets/audio/swish-5.ogg
+    - assets/audio/swish-6.ogg
+    - assets/audio/swish-7.ogg
+    - assets/audio/swish-8.ogg
+    - assets/audio/swish-9.ogg
+    - assets/audio/swish-10.ogg
+    - assets/audio/swish-11.ogg
+    - assets/audio/swish-12.ogg
+    - assets/audio/swish-13.ogg
     - assets/images/background.png
     - assets/images/boxer/dizzy.png
     - assets/images/boxer/idle.png
