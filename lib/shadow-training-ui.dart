@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:shadow_training/bgm.dart';
 import 'package:shadow_training/shadow-training.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -483,6 +484,15 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
 
   void didChangeMetrics() {
     game.resize(window.physicalSize / window.devicePixelRatio);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      BGM.resume();
+    } else {
+      BGM.pause();
+    }
   }
 }
 
