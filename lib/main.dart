@@ -31,6 +31,7 @@ void main() async {
       ),
       home: Scaffold(
         body: Stack(
+          fit: StackFit.expand,
           children: <Widget>[
             Positioned.fill(
               child: GestureDetector(
@@ -39,7 +40,7 @@ void main() async {
                 child: game.widget,
               ),
             ),
-            Center(
+            Positioned.fill(
               child: gameUI,
             ),
           ],

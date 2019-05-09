@@ -21,10 +21,10 @@ class ShadowTraining extends Game {
   // TextStyle fpsS;
 
   // constants
-  final double minNextSpawn = .3;
-  final double maxNextSpawn = 3;
+  final double minNextSpawn = .5;
+  final double maxNextSpawn = 2;
   final double nextSpawnReductionFactor = .95;
-  final double maxSpeed = 10;
+  final double maxSpeed = 12;
   final double initialSpeed = 5;
   final double speedIncrement = .05;
 
@@ -63,7 +63,7 @@ class ShadowTraining extends Game {
   void start() {
     perfectTime ??= PerfectTime(this);
     gameSpeed = initialSpeed;
-    nextSpawn = maxNextSpawn;
+    nextSpawn = 4;
     runningSpawn = nextSpawn;
     fatigueValue = 0;
     boxer.setStatus(BoxerStatus.idle);
@@ -81,18 +81,17 @@ class ShadowTraining extends Game {
   }
 
   void addFatigue(double fat) {
-    if (!ui.isTraining) return;
+    if (ui.currentScreen != UIScreen.playing) return;
     fatigueValue = max(0, fatigueValue + fat);
     if (fatigueValue >= 1) {
-      ui.hasLost = true;
-      ui.isTraining = false;
+      ui.currentScreen = UIScreen.lost;
       ui.update();
       boxer.setStatus(BoxerStatus.dizzy, howLong: 2);
     }
   }
 
   void calculatePunch(PunchMarkerType type) {
-    if (!ui.isTraining) return;
+    if (ui.currentScreen != UIScreen.playing) return;
     bool hasHit = false;
     markers.forEach((PunchMarker m) {
       if (!m.isHit && perfectTime.rect.overlaps(m.rect) && m.type == type) {
@@ -106,7 +105,7 @@ class ShadowTraining extends Game {
       }
     });
     if (!hasHit) {
-      addFatigue(fatigueValue * .25);
+      addFatigue((1 - fatigueValue) * .45);
     }
   }
 
@@ -118,7 +117,7 @@ class ShadowTraining extends Game {
 
     background.render(c);
     boxer.render(c);
-    if (ui.isTraining) {
+    if (ui.currentScreen == UIScreen.playing) {
       fatigueBar.render(c);
       markers.forEach((PunchMarker m) => m.render(c));
       perfectTime.render(c);
@@ -134,10 +133,16 @@ class ShadowTraining extends Game {
     markers.forEach((PunchMarker m) => m.update(t));
     markers.removeWhere((PunchMarker m) => m.isExpired);
 
-    if (ui.isTraining) {
+    if (ui.currentScreen == UIScreen.playing) {
       runningSpawn -= t;
       if (runningSpawn <= 0) {
-        nextSpawn = max(minNextSpawn, nextSpawn * nextSpawnReductionFactor);
+        nextSpawn = max(
+          minNextSpawn,
+          min(
+            maxNextSpawn,
+            nextSpawn * nextSpawnReductionFactor,
+          ),
+        );
         runningSpawn = nextSpawn;
         spawnMarker();
       }
@@ -163,7 +168,7 @@ class ShadowTraining extends Game {
   }
 
   void onTapDown(TapDownDetails d) {
-    if (!ui.isTraining) {
+    if (ui.currentScreen != UIScreen.playing) {
       boxer.randomPunch();
     }
   }

@@ -9,8 +9,7 @@ class ShadowTrainingUI extends StatefulWidget {
 
 class ShadowTrainingUIState extends State<ShadowTrainingUI> {
   ShadowTraining game;
-  bool isTraining = false;
-  bool hasLost = false;
+  UIScreen currentScreen = UIScreen.home;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
   int score = 0;
@@ -63,6 +62,36 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     );
   }
 
+  Widget helpButton() {
+    return Ink(
+      decoration: ShapeDecoration(
+        shape: CircleBorder(),
+      ),
+      child: IconButton(
+        color: Colors.white,
+        icon: Icon(
+          Icons.help_outline,
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
+  Widget creditsButton() {
+    return Ink(
+      decoration: ShapeDecoration(
+        shape: CircleBorder(),
+      ),
+      child: IconButton(
+        color: Colors.white,
+        icon: Icon(
+          Icons.nature_people,
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
   Widget highScoreDisplay() {
     return Text(
       'High-score: ' + highScore.toStringAsFixed(0),
@@ -75,11 +104,13 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
 
   Widget topControls() {
     return Padding(
-      padding: EdgeInsets.only(top: 5, left: 15, right: 15),
+      padding: EdgeInsets.only(top: 5, left: 5, right: 15),
       child: Row(
         children: <Widget>[
           bgmControlButton(),
           sfxControlButton(),
+          helpButton(),
+          creditsButton(),
           spacer(),
           highScoreDisplay(),
         ],
@@ -104,93 +135,124 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
     );
   }
 
-  Widget bottomNotTraining() {
-    return Row(
-      children: <Widget>[
-        IconButton(
-          color: Colors.white,
-          iconSize: 48,
-          icon: Icon(
-            Icons.help_outline,
-          ),
-          onPressed: () {},
-        ),
-        spacer(),
-        RaisedButton(
-          child: Text(
-            'Start Training!',
-            style: TextStyle(fontSize: 30),
-          ),
-          padding: EdgeInsets.all(20),
-          onPressed: () {
-            isTraining = true;
-            game.start();
-            update();
-          },
-        ),
-        spacer(),
-        IconButton(
-          color: Colors.white,
-          iconSize: 48,
-          icon: Icon(
-            Icons.nature_people,
-          ),
-          onPressed: () {},
-        ),
-      ],
+  Widget buildScreenHome() {
+    return Positioned.fill(
+      child: Column(
+        children: <Widget>[
+          spacer(),
+          Padding(
+            padding: EdgeInsets.only(bottom: 30),
+            child: Center(
+              child: RaisedButton(
+                child: Text(
+                  'Start Training!',
+                  style: TextStyle(fontSize: 30),
+                ),
+                padding: EdgeInsets.all(20),
+                onPressed: () {
+                  currentScreen = UIScreen.playing;
+                  game.start();
+                  update();
+                },
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
-  Widget bottomTraining() {
+  Widget buildScreenPlaying() {
     double iconSize = 64;
-    return Row(
-      children: <Widget>[
-        spacer(),
-        IconButton(
-          color: Colors.white,
-          icon: Icon(Icons.adjust),
-          iconSize: iconSize,
-          padding: EdgeInsets.zero,
-          onPressed: () => game.boxer.punchLeft(),
-        ),
-        spacer(),
-        IconButton(
-          color: Colors.white,
-          icon: Icon(Icons.adjust),
-          iconSize: iconSize,
-          padding: EdgeInsets.zero,
-          onPressed: () => game.boxer.upperCut(),
-        ),
-        spacer(),
-        IconButton(
-          color: Colors.white,
-          icon: Icon(Icons.adjust),
-          iconSize: iconSize,
-          padding: EdgeInsets.zero,
-          onPressed: () => game.boxer.punchRight(),
-        ),
-        spacer(),
-      ],
+    return Positioned.fill(
+      child: Column(
+        children: <Widget>[
+          spacer(),
+          Padding(
+            padding: EdgeInsets.only(bottom: 30),
+            child: Row(
+              children: <Widget>[
+                spacer(),
+                IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.adjust),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.zero,
+                  onPressed: () => game.boxer.punchLeft(),
+                ),
+                spacer(),
+                IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.adjust),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.zero,
+                  onPressed: () => game.boxer.upperCut(),
+                ),
+                spacer(),
+                IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.adjust),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.zero,
+                  onPressed: () => game.boxer.punchRight(),
+                ),
+                spacer(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget bottomControls() {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 30),
-      child: isTraining ? bottomTraining() : bottomNotTraining(),
+  Widget buildScreenLost() {
+    return Positioned.fill(
+      child: Column(
+        children: <Widget>[
+          spacer(),
+          Column(
+            children: <Widget>[
+              Text('You got tired.'),
+              RaisedButton(
+                child: Text('Train Again!'),
+                onPressed: () {
+                  currentScreen = UIScreen.playing;
+                  game.start();
+                  update();
+                },
+              ),
+            ],
+          ),
+          spacer(),
+        ],
+      ),
     );
   }
 
   Widget build(BuildContext context) {
-    List<Widget> controls = List<Widget>();
-    controls.add(topControls());
-    if (isTraining) {
-      controls.add(spacer(size: 60));
-      controls.add(scoreDisplay());
-    }
-    controls.add(spacer());
-    controls.add(bottomControls());
-
-    return Column(children: controls);
+    return Column(
+      children: <Widget>[
+        topControls(),
+        Expanded(
+          child: IndexedStack(
+            sizing: StackFit.expand,
+            children: <Widget>[
+              buildScreenHome(),
+              buildScreenPlaying(),
+              buildScreenLost(),
+            ],
+            index: currentScreen.index,
+          ),
+        ),
+      ],
+    );
   }
+}
+
+enum UIScreen {
+  home,
+  playing,
+  lost,
+  help,
+  credits,
 }
