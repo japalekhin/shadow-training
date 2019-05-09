@@ -73,26 +73,31 @@ class Boxer {
     backToIdle = max(0, howLong);
   }
 
+  void punch(BoxerStatus withWhat) {
+    if (status == BoxerStatus.dizzy) return;
+    setStatus(withWhat, howLong: punchDuration);
+  }
+
+  void punchLeft() {
+    punch(BoxerStatus.punchLeft);
+    game.calculatePunch(PunchMarkerType.left);
+  }
+
+  void punchRight() {
+    punch(BoxerStatus.punchRight);
+    game.calculatePunch(PunchMarkerType.right);
+  }
+
+  void upperCut() {
+    punch(BoxerStatus.punchUp);
+    game.calculatePunch(PunchMarkerType.up);
+  }
+
   void randomPunch() {
     int punch = game.rnd.nextInt(3);
     if (punch == 0) punchLeft();
     if (punch == 1) punchRight();
     if (punch == 2) upperCut();
-  }
-
-  void punchLeft() {
-    setStatus(BoxerStatus.punchLeft, howLong: punchDuration);
-    game.calculatePunch(PunchMarkerType.left);
-  }
-
-  void punchRight() {
-    setStatus(BoxerStatus.punchRight, howLong: punchDuration);
-    game.calculatePunch(PunchMarkerType.right);
-  }
-
-  void upperCut() {
-    setStatus(BoxerStatus.punchUp, howLong: punchDuration);
-    game.calculatePunch(PunchMarkerType.up);
   }
 
   void render(Canvas c) {
