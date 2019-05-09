@@ -83,7 +83,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         icon: Icon(
           Icons.help_outline,
         ),
-        onPressed: () {},
+        onPressed: () {
+          currentScreen = currentScreen == UIScreen.help ? UIScreen.home : UIScreen.help;
+          update();
+        },
       ),
     );
   }
@@ -98,7 +101,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         icon: Icon(
           Icons.nature_people,
         ),
-        onPressed: () {},
+        onPressed: () {
+          currentScreen = currentScreen == UIScreen.credits ? UIScreen.home : UIScreen.credits;
+          update();
+        },
       ),
     );
   }
@@ -220,17 +226,124 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     return Positioned.fill(
       child: Column(
         children: <Widget>[
-          spacer(),
-          Column(
+          SimpleDialog(
+            backgroundColor: Color(0xaaffffff),
             children: <Widget>[
-              Text('You got tired.'),
-              RaisedButton(
-                child: Text('Train Again!'),
-                onPressed: () {
-                  currentScreen = UIScreen.playing;
-                  game.start();
-                  update();
-                },
+              Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      'You got tired.',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          'Effective punches thrown:',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          score.toString(),
+                          style: TextStyle(fontSize: 40),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    'New High-Score!',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 20),
+                    child: RaisedButton(
+                      child: Text('Train Again!'),
+                      onPressed: () {
+                        currentScreen = UIScreen.playing;
+                        game.start();
+                        update();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildScreenHelp() {
+    return Positioned.fill(
+      child: Column(
+        children: <Widget>[
+          SimpleDialog(
+            backgroundColor: Color(0xaaffffff),
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'How to Train',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: RaisedButton(
+                      child: Text('Got it. Let\'s go!'),
+                      onPressed: () {
+                        currentScreen = UIScreen.home;
+                        update();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildScreenCredits() {
+    return Positioned.fill(
+      child: Column(
+        children: <Widget>[
+          SimpleDialog(
+            backgroundColor: Color(0xaaffffff),
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'The Team',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: RaisedButton(
+                      child: Text('OK Cool!'),
+                      onPressed: () {
+                        currentScreen = UIScreen.home;
+                        update();
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -251,6 +364,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
               buildScreenHome(),
               buildScreenPlaying(),
               buildScreenLost(),
+              buildScreenHelp(),
+              buildScreenCredits(),
             ],
             index: currentScreen.index,
           ),
