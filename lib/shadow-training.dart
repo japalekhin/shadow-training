@@ -94,6 +94,7 @@ class ShadowTraining extends Game {
     if (ui.currentScreen != UIScreen.playing) return;
     bool hasHit = false;
     markers.forEach((PunchMarker m) {
+      if (hasHit) return;
       if (!m.isHit && perfectTime.rect.overlaps(m.rect) && m.type == type) {
         Rect intersection = perfectTime.rect.intersect(m.rect);
         double percentage = intersection.width * intersection.height;
@@ -101,6 +102,9 @@ class ShadowTraining extends Game {
         m.hit(percentage);
         hasHit = true;
         ui.score += 1;
+        if (ui.score > ui.highScore && ui.score > 0) {
+          ui.storage.setInt('high-score', ui.score);
+        }
         ui.update();
       }
     });
