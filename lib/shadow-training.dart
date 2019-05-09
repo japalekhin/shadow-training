@@ -103,7 +103,8 @@ class ShadowTraining extends Game {
         hasHit = true;
         ui.score += 1;
         if (ui.score > ui.highScore && ui.score > 0) {
-          ui.storage.setInt('high-score', ui.score);
+          ui.highScore = ui.score;
+          ui.storage.setInt('high-score', ui.highScore);
         }
         ui.update();
       }
