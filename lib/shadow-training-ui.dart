@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shadow_training/shadow-training.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShadowTrainingUI extends StatefulWidget {
   final ShadowTrainingUIState state = ShadowTrainingUIState();
@@ -10,11 +11,22 @@ class ShadowTrainingUI extends StatefulWidget {
 
 class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingObserver {
   ShadowTraining game;
+  SharedPreferences _storage;
+
   UIScreen currentScreen = UIScreen.home;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
   int score = 0;
   int highScore = 0;
+
+  SharedPreferences get storage => _storage;
+  set storage(SharedPreferences value) {
+    _storage = value;
+    highScore = storage.getInt('high-score') ?? 0;
+    if (mounted) {
+      update();
+    }
+  }
 
   void initState() {
     super.initState();
