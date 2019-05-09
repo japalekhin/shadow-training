@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shadow_training/shadow-training.dart';
 
@@ -7,13 +8,23 @@ class ShadowTrainingUI extends StatefulWidget {
   State<StatefulWidget> createState() => state;
 }
 
-class ShadowTrainingUIState extends State<ShadowTrainingUI> {
+class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingObserver {
   ShadowTraining game;
   UIScreen currentScreen = UIScreen.home;
   bool isBGMEnabled = true;
   bool isSFXEnabled = true;
   int score = 0;
   int highScore = 0;
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   void update() {
     setState(() {});
@@ -246,6 +257,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> {
         ),
       ],
     );
+  }
+
+  void didChangeMetrics() {
+    game.resize(window.physicalSize / window.devicePixelRatio);
   }
 }
 
