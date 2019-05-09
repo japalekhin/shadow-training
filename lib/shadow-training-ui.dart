@@ -157,7 +157,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     nameHandlePair.add(
       Text(
         name,
-        style: TextStyle(fontSize: 25),
+        style: TextStyle(fontSize: 20),
       ),
     );
     if (handle != null) {
@@ -341,26 +341,61 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
           SimpleDialog(
             backgroundColor: Color(0xaaffffff),
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'How to Train',
-                      style: TextStyle(fontSize: 25),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        'How to Train',
+                        style: TextStyle(fontSize: 25),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15),
-                    child: RaisedButton(
-                      child: Text('Got it. Let\'s go!'),
-                      onPressed: () {
-                        currentScreen = UIScreen.home;
-                        update();
-                      },
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        'Time your punches with flying gloves while your body is warmed up.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        'If you miss a punch, your your body will cool down. It will make you dizzy.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        'If you keep punching the air, your combo will break and you\'ll get tired. It will make you dizzy.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        'The required punches will get faster. Do as many combos as you can.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: RaisedButton(
+                        child: Text('Got it. Let\'s go!'),
+                        onPressed: () {
+                          currentScreen = UIScreen.home;
+                          update();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
