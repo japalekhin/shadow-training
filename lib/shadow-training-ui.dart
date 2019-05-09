@@ -62,6 +62,11 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         ),
         onPressed: () {
           isBGMEnabled = !isBGMEnabled;
+          if (isBGMEnabled) {
+            BGM.resume();
+          } else {
+            BGM.pause();
+          }
           update();
         },
       ),
