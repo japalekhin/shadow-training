@@ -101,10 +101,12 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         icon: Icon(
           Icons.help_outline,
         ),
-        onPressed: () {
-          currentScreen = currentScreen == UIScreen.help ? UIScreen.home : UIScreen.help;
-          update();
-        },
+        onPressed: currentScreen == UIScreen.playing
+            ? null
+            : () {
+                currentScreen = currentScreen == UIScreen.help ? UIScreen.home : UIScreen.help;
+                update();
+              },
       ),
     );
   }
@@ -119,10 +121,12 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         icon: Icon(
           Icons.nature_people,
         ),
-        onPressed: () {
-          currentScreen = currentScreen == UIScreen.credits ? UIScreen.home : UIScreen.credits;
-          update();
-        },
+        onPressed: currentScreen == UIScreen.playing
+            ? null
+            : () {
+                currentScreen = currentScreen == UIScreen.credits ? UIScreen.home : UIScreen.credits;
+                update();
+              },
       ),
     );
   }
