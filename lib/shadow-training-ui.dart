@@ -152,6 +152,47 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     );
   }
 
+  Widget creditRole(String role, String name, {String handle, String url}) {
+    List<Widget> nameHandlePair = List<Widget>();
+    nameHandlePair.add(
+      Text(
+        name,
+        style: TextStyle(fontSize: 25),
+      ),
+    );
+    if (handle != null) {
+      nameHandlePair.add(
+        Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Text(handle),
+        ),
+      );
+    }
+
+    List<Widget> rows = List<Widget>();
+    rows.add(
+      Text(role),
+    );
+    rows.add(
+      Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: nameHandlePair,
+        ),
+      ),
+    );
+    if (url != null) {
+      rows.add(
+        Text(url),
+      );
+    }
+
+    return Padding(
+      padding: EdgeInsets.only(top: 25),
+      child: Column(children: rows),
+    );
+  }
+
   Widget buildScreenHome() {
     return Positioned.fill(
       child: Column(
@@ -296,6 +337,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     return Positioned.fill(
       child: Column(
         children: <Widget>[
+          spacer(),
           SimpleDialog(
             backgroundColor: Color(0xaaffffff),
             children: <Widget>[
@@ -332,8 +374,9 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     return Positioned.fill(
       child: Column(
         children: <Widget>[
+          spacer(),
           SimpleDialog(
-            backgroundColor: Color(0xaaffffff),
+            backgroundColor: Color(0xddffffff),
             children: <Widget>[
               Column(
                 children: <Widget>[
@@ -344,6 +387,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
+                  creditRole('Published by', 'Alekhin Games', url: 'https://alekhin.games'),
+                  creditRole('Code', 'Alekhin', handle: '@japalekhin', url: 'https://jap.alekhin.io'),
+                  creditRole('Graphics', 'Eman', url: 'https://emancipated.art'),
+                  creditRole('Music', 'Alekhin'),
                   Padding(
                     padding: EdgeInsets.only(top: 15),
                     child: RaisedButton(
