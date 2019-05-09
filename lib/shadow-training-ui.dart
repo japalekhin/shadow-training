@@ -237,6 +237,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     return Positioned.fill(
       child: Column(
         children: <Widget>[
+          spacer(size: 45),
+          scoreDisplay(),
           spacer(),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
