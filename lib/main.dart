@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:shadow_training/shadow-training-ui.dart';
 import 'package:shadow_training/shadow-training.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   await Flame.util.fullScreen();
@@ -19,8 +20,10 @@ void main() async {
     'perfect-time.png',
   ]);
 
+  SharedPreferences storage = await SharedPreferences.getInstance();
   ShadowTrainingUI gameUI = ShadowTrainingUI();
   ShadowTraining game = ShadowTraining(gameUI.state);
+  gameUI.state.storage = storage;
   gameUI.state.game = game;
 
   runApp(
