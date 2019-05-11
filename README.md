@@ -4,6 +4,8 @@
 
 Simple shadow boxing training tap-tap game. Made with Flame and Flutter.
 
+Demo video: https://www.youtube.com/watch?v=e5kcADlFWt8
+
 ## Support
 
 Please support my work by becoming a patron on Patreon.
