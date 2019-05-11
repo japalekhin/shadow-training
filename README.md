@@ -1,16 +1,11 @@
 # Shadow Training
 
-A new Flutter project.
+![](https://jap.alekhin.io/wp-content/uploads/2019/05/shadow-training-dialog.jpg)
 
-## Getting Started
+Simple shadow boxing training tap-tap game. Made with Flame and Flutter.
 
-This project is a starting point for a Flutter application.
+## Support
 
-A few resources to get you started if this is your first Flutter project:
+Please support my work by becoming a patron on Patreon.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[![](https://jap.alekhin.io/wp-content/uploads/2019/03/become-patron-button.png)](https://www.patreon.com/bePatron?u=6507717)
