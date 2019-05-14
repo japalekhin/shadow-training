@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shadow_training/bgm.dart';
+import 'package:shadow_training/components/punch-buttons.dart';
 import 'package:shadow_training/shadow-training.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -255,28 +256,22 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
             child: Row(
               children: <Widget>[
                 spacer(),
-                IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.adjust),
-                  iconSize: iconSize,
-                  padding: EdgeInsets.zero,
-                  onPressed: () => game.boxer.punchLeft(),
+                GestureDetector(
+                  onTapDown: (TapDownDetails d) => game.boxer.punchLeft(),
+                  behavior: HitTestBehavior.opaque,
+                  child: LeftPunch(),
                 ),
                 spacer(),
-                IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.adjust),
-                  iconSize: iconSize,
-                  padding: EdgeInsets.zero,
-                  onPressed: () => game.boxer.upperCut(),
+                GestureDetector(
+                  onTapDown: (TapDownDetails d) => game.boxer.upperCut(),
+                  behavior: HitTestBehavior.opaque,
+                  child: Uppercut(),
                 ),
                 spacer(),
-                IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.adjust),
-                  iconSize: iconSize,
-                  padding: EdgeInsets.zero,
-                  onPressed: () => game.boxer.punchRight(),
+                GestureDetector(
+                  onTapDown: (TapDownDetails d) => game.boxer.punchRight(),
+                  behavior: HitTestBehavior.opaque,
+                  child: RightPunch(),
                 ),
                 spacer(),
               ],
