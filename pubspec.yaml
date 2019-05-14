@@ -43,6 +43,7 @@ flutter:
     - assets/images/boxer/punch-up.png
     - assets/images/markers.png
     - assets/images/perfect-time.png
+    - assets/images/title.png
 
   fonts:
     - family: HVD

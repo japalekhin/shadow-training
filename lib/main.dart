@@ -20,6 +20,7 @@ void main() async {
     'boxer/punch-up.png',
     'markers.png',
     'perfect-time.png',
+    'title.png',
   ]);
   await SFX.preload();
   await BGM.preload();
