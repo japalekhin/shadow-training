@@ -133,12 +133,24 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
   }
 
   Widget highScoreDisplay() {
-    return Text(
-      'High-score: ' + highScore.toStringAsFixed(0),
-      style: TextStyle(
-        fontSize: 24,
-        color: Colors.white,
-      ),
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 6),
+          child: Icon(
+            Icons.beenhere,
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          highScore.toStringAsFixed(0),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w800,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 
@@ -244,7 +256,6 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
   }
 
   Widget buildScreenPlaying() {
-    double iconSize = 64;
     return Positioned.fill(
       child: Column(
         children: <Widget>[
