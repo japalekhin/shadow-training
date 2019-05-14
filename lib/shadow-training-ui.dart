@@ -248,9 +248,12 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
               child: RaisedButton(
                 child: Text(
                   'Start Training!',
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 24),
                 ),
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 35,
+                  vertical: 20,
+                ),
                 onPressed: () {
                   currentScreen = UIScreen.playing;
                   game.start();
