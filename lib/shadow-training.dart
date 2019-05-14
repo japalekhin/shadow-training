@@ -8,6 +8,7 @@ import 'package:shadow_training/components/boxer.dart';
 import 'package:shadow_training/components/fatigue.dart';
 import 'package:shadow_training/components/perfect-time.dart';
 import 'package:shadow_training/components/punch-marker.dart';
+import 'package:shadow_training/components/title.dart';
 import 'package:shadow_training/shadow-training-ui.dart';
 
 class ShadowTraining extends Game {
@@ -36,6 +37,7 @@ class ShadowTraining extends Game {
 
   // components
   Background background;
+  Title title;
   Boxer boxer;
   List<PunchMarker> markers;
   PerfectTime perfectTime;
@@ -55,6 +57,7 @@ class ShadowTraining extends Game {
 
     // components
     background = Background(this);
+    title = Title(this);
     boxer = Boxer(this);
     markers = List<PunchMarker>();
     fatigueBar = Fatigue(this);
@@ -121,6 +124,9 @@ class ShadowTraining extends Game {
     c.translate(0, screenHeight);
 
     background.render(c);
+    if (ui.currentScreen != UIScreen.playing) {
+      title.render(c);
+    }
     boxer.render(c);
     if (ui.currentScreen == UIScreen.playing) {
       fatigueBar.render(c);
@@ -170,6 +176,7 @@ class ShadowTraining extends Game {
     screen = s;
     screenScale = screen.width / 9;
     screenHeight = screen.height / screenScale;
+    title.layout();
   }
 
   void onTapDown(TapDownDetails d) {
