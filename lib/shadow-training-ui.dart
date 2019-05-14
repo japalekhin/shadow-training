@@ -133,21 +133,30 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
   }
 
   Widget highScoreDisplay() {
+    Color color;
+    FontWeight fontWeight;
+    if (score > 0 && score >= highScore) {
+      color = Color(0xff009432);
+      fontWeight = FontWeight.w800;
+    } else {
+      color = Colors.white;
+      fontWeight = FontWeight.w400;
+    }
     return Row(
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(right: 6),
           child: Icon(
             Icons.beenhere,
-            color: Colors.white,
+            color: color,
           ),
         ),
         Text(
           highScore.toStringAsFixed(0),
           style: TextStyle(
             fontSize: 24,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
+            fontWeight: fontWeight,
+            color: color,
           ),
         ),
       ],
