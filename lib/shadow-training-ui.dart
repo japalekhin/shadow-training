@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shadow_training/bgm.dart';
-import 'package:shadow_training/components/punch-buttons.dart';
+import 'package:shadow_training/widgets/punch-buttons.dart';
 import 'package:shadow_training/shadow-training.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
