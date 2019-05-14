@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 
 class SFX {
-  static Soundpool sfxPool = Soundpool(streamType: StreamType.notification, maxStreams: 10);
+  static Soundpool sfxPool = Soundpool(streamType: StreamType.music, maxStreams: 10);
   static List<int> swishTrail = <int>[-1, -1, -1];
   static List<int> swish;
   static Random random = Random();
