@@ -36,6 +36,7 @@ void main() async {
       title: 'Shadow Training',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'HVD',
       ),
       home: Scaffold(
         body: Stack(
