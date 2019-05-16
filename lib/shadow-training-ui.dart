@@ -136,7 +136,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     Color color;
     FontWeight fontWeight;
     if (score > 0 && score >= highScore) {
-      color = Color(0xff009432);
+      color = Color(0xff032626);
       fontWeight = FontWeight.w800;
     } else {
       color = Colors.white;
@@ -201,21 +201,34 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     nameHandlePair.add(
       Text(
         name,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(
+          fontSize: 20,
+          color: Color(0xff032626),
+        ),
       ),
     );
     if (handle != null) {
       nameHandlePair.add(
         Padding(
           padding: EdgeInsets.only(left: 10),
-          child: Text(handle),
+          child: Text(
+            handle,
+            style: TextStyle(
+              color: Color(0xff032626),
+            ),
+          ),
         ),
       );
     }
 
     List<Widget> rows = List<Widget>();
     rows.add(
-      Text(role),
+      Text(
+        role,
+        style: TextStyle(
+          color: Color(0xff032626),
+        ),
+      ),
     );
     rows.add(
       Center(
@@ -227,7 +240,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
     );
     if (url != null) {
       rows.add(
-        Text(url),
+        Text(url, style: TextStyle(color: Color(0x88032626)),),
       );
     }
 
@@ -246,9 +259,13 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
             padding: EdgeInsets.only(bottom: 30),
             child: Center(
               child: RaisedButton(
+                color: Color(0xff032626),
                 child: Text(
                   'Start Training!',
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
                 ),
                 padding: EdgeInsets.symmetric(
                   horizontal: 35,
@@ -312,7 +329,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         padding: EdgeInsets.only(top: 20),
         child: Text(
           'You got tired.',
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(
+            fontSize: 25,
+            color: Color(0xff032626),
+          ),
         ),
       ),
     );
@@ -323,7 +343,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
           children: <Widget>[
             Text(
               'Effective punches thrown:',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(
+                fontSize: 18,
+                color: Color(0xff032626),
+              ),
             ),
             Text(
               score.toString(),
@@ -338,8 +361,15 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         Text(
           'New High-Score!',
           style: TextStyle(
-            color: Colors.red,
+            color: Colors.green,
             fontSize: 20,
+            shadows: <Shadow>[
+              Shadow(
+                blurRadius: 3,
+                color: Color(0xff000000),
+                offset: Offset(2, 2),
+              ),
+            ],
           ),
         ),
       );
@@ -348,7 +378,11 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
       Padding(
         padding: EdgeInsets.only(top: 15, bottom: 20),
         child: RaisedButton(
-          child: Text('Train Again!'),
+          color: Color(0xff032626),
+          child: Text(
+            'Train Again!',
+            style: TextStyle(color: Colors.white),
+          ),
           onPressed: () {
             currentScreen = UIScreen.playing;
             game.start();
@@ -362,7 +396,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
       child: Column(
         children: <Widget>[
           SimpleDialog(
-            backgroundColor: Color(0xaaffffff),
+            backgroundColor: Color(0xddffffff),
             children: <Widget>[
               Column(
                 children: children,
@@ -381,7 +415,7 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
         children: <Widget>[
           spacer(),
           SimpleDialog(
-            backgroundColor: Color(0xaaffffff),
+            backgroundColor: Color(0xddffffff),
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25),
@@ -391,7 +425,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
                         'How to Train',
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Color(0xff032626),
+                        ),
                       ),
                     ),
                     Padding(
@@ -399,7 +436,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       child: Text(
                         'Time your punches with flying gloves while your body is warmed up.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff032626),
+                        ),
                       ),
                     ),
                     Padding(
@@ -407,7 +447,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       child: Text(
                         'If you miss a punch, your your body will cool down. It will make you dizzy.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff032626),
+                        ),
                       ),
                     ),
                     Padding(
@@ -415,7 +458,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       child: Text(
                         'If you keep punching the air, your combo will break and you\'ll get tired. It will make you dizzy.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff032626),
+                        ),
                       ),
                     ),
                     Padding(
@@ -423,13 +469,22 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                       child: Text(
                         'The required punches will get faster. Do as many combos as you can.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff032626),
+                        ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: RaisedButton(
-                        child: Text('Got it. Let\'s go!'),
+                        color: Color(0xff032626),
+                        child: Text(
+                          'Got it. Let\'s go!',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                         onPressed: () {
                           currentScreen = UIScreen.home;
                           update();
@@ -461,7 +516,10 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                     padding: EdgeInsets.only(top: 10),
                     child: Text(
                       'The Team',
-                      style: TextStyle(fontSize: 25),
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Color(0xff032626),
+                      ),
                     ),
                   ),
                   creditRole('Published by', 'Alekhin Games', url: 'https://alekhin.games'),
@@ -472,7 +530,13 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                   Padding(
                     padding: EdgeInsets.only(top: 15),
                     child: RaisedButton(
-                      child: Text('OK Cool!'),
+                      color: Color(0xff032626),
+                      child: Text(
+                        'OK Cool!',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                       onPressed: () {
                         currentScreen = UIScreen.home;
                         update();
