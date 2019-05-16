@@ -135,7 +135,7 @@ class Boxer {
     }
 
     if (status == BoxerStatus.dizzy) {
-      dizzyIndex += dizzySprite.length * t * 1.25;
+      dizzyIndex += dizzySprite.length * t * 5;
       while (dizzyIndex > dizzySprite.length) {
         dizzyIndex -= dizzySprite.length;
       }
