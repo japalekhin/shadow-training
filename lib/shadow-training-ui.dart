@@ -467,7 +467,8 @@ class ShadowTrainingUIState extends State<ShadowTrainingUI> with WidgetsBindingO
                   creditRole('Published by', 'Alekhin Games', url: 'https://alekhin.games'),
                   creditRole('Code', 'Alekhin', handle: '@japalekhin', url: 'https://jap.alekhin.io'),
                   creditRole('Graphics', 'Eman', url: 'https://emancipated.art'),
-                  creditRole('Music', 'Alekhin'),
+                  creditRole('Music', 'section31'),
+                  creditRole('SFX', 'artisticdude'),
                   Padding(
                     padding: EdgeInsets.only(top: 15),
                     child: RaisedButton(
