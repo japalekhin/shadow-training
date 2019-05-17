@@ -17,6 +17,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.0
+
+dependency_overrides:
+  image: 2.0.7
 
 flutter:
   uses-material-design: true
@@ -49,3 +53,11 @@ flutter:
     - family: HVD
       fonts:
         - asset: fonts/hvd.otf
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path_android: assets/launcher-icon/ic_launcher.png
+  image_path_ios: assets/launcher-icon/ic_launcher.png
+  adaptive_icon_background: assets/launcher-icon/background-only.png
+  adaptive_icon_foreground: assets/launcher-icon/foreground-only.png
