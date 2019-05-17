@@ -1,7 +1,7 @@
 name: shadow_training
 description: A new Flutter project.
 
-version: 1.0.0+100
+version: 1.0.0+10064
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
